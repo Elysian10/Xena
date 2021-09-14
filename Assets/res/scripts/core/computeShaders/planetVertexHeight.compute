@@ -1,0 +1,15 @@
+﻿#pragma kernel ComputePlanetVertexHeight
+
+RWStructuredBuffer<float3> vertecies;
+uint numVertecies;
+float testValue;
+
+[numthreads(32,1,1)]
+void ComputePlanetVertexHeight(uint id : SV_DispatchThreadID){
+    if (id >= numVertecies) return;
+    float3 vertexPos = vertecies[id];
+    //heights[id] = 1 + sin(vertexPos.y * testValue) * 0.05;
+    vertecies[id].x = 5;
+    vertecies[id].y = 5;
+    vertecies[id].z = 5;
+}

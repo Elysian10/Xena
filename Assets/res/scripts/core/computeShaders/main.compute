@@ -1,0 +1,12 @@
+﻿#pragma kernel SetRadius
+ 
+RWStructuredBuffer<float3> vertecies;
+float radius;
+ 
+[numthreads(32,1,1)]
+void SetRadius (uint id : SV_DispatchThreadID)
+{
+    float3 vertex = vertecies[id];
+    float root = sqrt((vertex.x * vertex.x) + (vertex.y * vertex.y) + (vertex.z * vertex.z));
+    vertecies[id] = vertecies[id] / root * radius;
+}
